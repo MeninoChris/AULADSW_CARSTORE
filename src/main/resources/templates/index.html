@@ -1,0 +1,53 @@
+
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="[http://www.thymeleaf.org](http://www.thymeleaf.org)">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastro de Carro</title>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.3.3/css/bootstrap.min.css}">
+    <style>
+        .error { color: red; font-size: 0.8em; }
+    </style>
+</head>
+<body>
+
+<div th:replace="~{fragments :: navbar}"></div>
+
+<div class="container mt-5">
+
+    <h1>Cadastrar Novo Carro</h1>
+
+    <form action="#" th:action="@{/cars}" th:object="${carDTO}" method="post">
+
+        <input type="hidden" th:field="*{id}" />
+
+        <div class="mb-3">
+            <label for="name" class="form-label">Nome:</label>
+            <input type="text" id="name" th:field="*{name}" class="form-control">
+            <span class="error" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+        </div>
+
+        <div class="mb-3">
+            <label for="color" class="form-label">Cor:</label>
+            <input type="text" id="color" th:field="*{color}" class="form-control">
+            <span class="error" th:if="${#fields.hasErrors('color')}" th:errors="*{color}"></span>
+        </div>
+
+        <div class="mb-3">
+            <label for="color" class="form-label">Brand:</label>
+            <input type="text" id="brand" th:field="*{brand}" class="form-control">
+            <span class="error" th:if="${#fields.hasErrors('brand')}" th:errors="*{brand}"></span>
+        </div>
+
+        <div>
+            <button class="btn btn-primary" type="submit">Salvar</button>
+        </div>
+    </form>
+
+</div>
+
+<script th:src="@{/webjars/jquery/3.7.1/jquery.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/5.3.3/js/bootstrap.bundle.min.js}"></script>
+
+</body>
+</html>

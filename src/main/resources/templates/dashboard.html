@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Carros Cadastrados</title>
+  <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.3.3/css/bootstrap.min.css}">
+</head>
+<body>
+
+<div th:replace="~{fragments :: navbar}"></div>
+
+<div class="container mt-5">
+
+  <h1>Dashboard de Carros</h1>
+
+<!--    <div th:each="car : ${cars}">-->
+
+<!--      <div class="card" style="width: 18rem;">-->
+<!--        <img src="https://img.freepik.com/psd-premium/carro-de-luxo-sobre-um-fundo-transparente_574412-4171.jpg" class="card-img-top" alt="...">-->
+<!--        <div class="card-body">-->
+<!--          <h5 class="card-title" th:text="${car.name}"></h5>-->
+<!--          <p class="card-text"  th:text="${car.brand}"></p>-->
+<!--          <a href="#" class="btn btn-primary">Go somewhere</a>-->
+<!--        </div>-->
+<!--      </div>-->
+
+<!--      <br>-->
+
+<!--    </div>-->
+
+  <table border="1" class="table table-striped">
+    <thead>
+    <tr>
+        <th>Nome</th>
+        <th>Cor</th>
+        <th>Marca</th>
+        <th>Ações</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="car : ${cars}">
+      <td th:text="${car.name}"></td>
+      <td th:text="${car.color}"></td>
+      <td th:text="${car.brand}"></td>
+        <td>
+
+            <a th:href="@{/cars/edit(id=${car.id})}" class="btn btn-secondary btn-sm">Update</a>
+
+            <form th:action="@{/cars/delete}" method="post" style="display:inline" >
+                <input type="hidden" name="id" th:value="${car.id}" />
+                <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+            </form>
+
+        </td>
+    </tr>
+    </tbody>
+  </table>
+
+</div>
+<script th:src="@{/webjars/jquery/3.7.1/jquery.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/5.3.3/js/bootstrap.bundle.min.js}"></script>
+
+</body>
+</html>
