@@ -55,7 +55,9 @@ public class HomeController {
     @GetMapping("/cars/edit")
     public String editCar(@RequestParam("id") String id, Model model) {
 
-        CarDTO car = service.findById(id);
+        // CarDTO car = service.findById(id);
+
+        CarDTO car = new CarDTO();
 
         if (car == null) {
 
